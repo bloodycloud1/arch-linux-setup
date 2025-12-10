@@ -4,7 +4,7 @@
 ##### Синхронизация времени
 ```timedatectl set-ntp true```
 #####  Установка времени
-```timedatectl set-timezpne Asia/Ekaterinburg```
+```timedatectl set-timezone Asia/Yekaterinburg```
 ##### Проверка статуса времени
 ```timedatectl status```
 ##  2) Работа с дисками
@@ -55,7 +55,7 @@ Partition type or allias (type L to list all): ```19``` (type L to list all) - �
 ##### Для всех разделов создания файловой системы
 ```mkfs.fat -F32 /dev/sda3```<br>
 ```mkswap /dev/sda4```<br>
-```mkswon /dev/sda4```<br>
+```swapon /dev/sda4```<br>
 ```mkfs.ext4 /dev/sda1```<br>
 ```mkfs.ext4 /dev/sda2```<br>
 
