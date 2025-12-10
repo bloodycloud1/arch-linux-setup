@@ -95,38 +95,40 @@ genfstab в Arch Linux — это утилита, которая автомат�
 ```backspace```<br>
 записываем ```shift + :``` далее ```w```<br>
 выходим ```shift + :``` далее ```q```<br>
- ```locale-gen``` - uенерируем locale-gen командой<br>
+ ```locale-gen``` - генерируем locale-gen командой<br>
 ```echo "LANG=en_US.UTF-8" > /etc/locale.conf```<br>
-#### hostname
+#### Hostname (имя PC)
 ```vim /etc/hostname```
-в vim прописываем свой ```username```<br>
+в vim прописываем свой ```{username}```<br>
 записываем ```shift + :``` далее ```w```<br>
 выходим ```shift + :``` далее ```q```<br>
-#### hosts
+#### Hosts
 ```127.0.0.1    localhost```<br>
 ```::1          localhost```<br>
-```127.0.0.1    username.localdomain   username``` - username указываем свой личный<br>
+```127.0.0.1    {username}.localdomain   {username}``` - username указываем свой личный<br>
 записываем ```shift + :``` далее ```w```<br>
 выходим ```shift + :``` далее ```q```<br>
 
 #### Для root пользователя
 ```passwd```<br>
 Добавляем обычного пользователя с паролем
-```useradd -m username```<br>
-```passwd username```<br>
+```useradd -m {username}```<br>
+```passwd {username}```<br>
 Добавляем права на пользователя <br>
-```usermod -aG wheel,audio,video,optical,storage username ```<br>
-```userdbctl groups-of-user username```
+```usermod -aG wheel,audio,video,optical,storage {username}```<br>
+```userdbctl groups-of-user {username}```
 
 #### Добавляем права Sudo
-```pacman -S sudo```
+```pacman -S sudo```<br>
+```visudo``` <br>
+расскоментируем строку ```%wheel ALL=(ALL)```
 
 #### Устанавливаем  GRUB
 ```pacman -S grub``` <br>
 ```pacman -S efibootmgr dosfstools os-prober m-tools```<br>
 #### Делаем Dual boot с Windows
 ```vim /etc/defaul/grub``` <br>
-```GRUB_DISABLE_PROBER=false```  - прописываем в vim в GRUB boot lader configuration<br>
+```GRUB_DISABLE_PROBER=false```  - прописываем в vim в GRUB boot loader configuration<br>
 записываем ```shift + :``` далее ```w```<br>
 выходим ```shift + :``` далее ```q```<br>
 
@@ -135,7 +137,17 @@ genfstab в Arch Linux — это утилита, которая автомат�
 ```grub install --target=x86_64-efi --bootloader-id=grub_uefi --recheck```<br>
 ```grub-mkconfig -o /boot/grub/grub.cfg```<br>
 
+#### Инструмент который позволит настроить интернет 
+Dynamic Host Configuration Protocol Client Daemon
 ```sudo pacman -S dhcpcd```<br>
+
+##### Редактируем pacman.conf
+```sudo vim /etc/pacman.conf ```<br>
+внутри расскоментируем 
+```#multilib```<br>
+```#Include = /etc/pacman.d/mirrorlist```<br>
+##### Перезапускаем систему
 ```exit```<br>
 ```reboot```<br>
 ```sudo systemctl enable dhcpcd```<br>
+```sudo pacman -Sy```
