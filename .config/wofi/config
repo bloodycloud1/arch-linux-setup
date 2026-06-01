@@ -1,0 +1,7 @@
+mode=drun
+allow_images=true
+prompt=Search Apps...
+no_actions=true
+image_size=32
+width=500
+height=300

@@ -5,7 +5,7 @@
 ```sudo pacman -S sddm```<br>
 ```sudo systemctl enable sddm.service```<br>
 
-#### Установка ssdm и включение его
+#### Установка терминала kitty
 ```sudo pacman -S kitty``` - терминал<br>
 
 #### Установка thunar файловый менеджер
@@ -13,14 +13,30 @@
 
 #### Установка wofi: Лаунчер приложений
 ```sudo pacman wofi```
+
+#### Установка xdg-desktop-portal-hyprland
+```xdg-desktop-portal-hyprland```
+
 #### Установка waybar
-```pacman -S waybar```
+```sudo pacman -S waybar```
+
+#### Установка hyprpaper
+```sudo pacman -S hyprpaper```
+
+#### Установка hyprpolkitagent
+```sudo pacman -S hyprpolkitagent```
+
+#### Установка mako
+```sudo pacman -S mako```
+
+#### Установка hyprlauncher
+```sudo pacman -S hyprlauncher```
+
+#### Установка clipboard wl-copy
+```sudo pacman -S wl-copy```
+
 #### Установка yay
 ```git clone https://aur.archlinux.org/yay.git```
-```cd yay-git```
+```cd yay```
 ```sudo pacman -S base-devel```
 ```makepkg -si```
-
-#### Установка pipewire
-```sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber lib32-pipewire```
-```sudo pacman -S pavucontrol```

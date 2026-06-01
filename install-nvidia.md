@@ -6,35 +6,29 @@
 #### nvidia-dkms: Основной пакет драйвера, который будет компилироваться для вашего ядра.
 #### nvidia-utils: Утилиты и библиотеки.
 #### nvidia-settings: Для графических настроек.
-```sudo pacman -S nvidia nvidia-utils nvidia-settings nvidia-dkms```
+```sudo pacman -S nvidia-utils nvidia-dkms nvidia-settings ```
 
-### Установите пакеты для ускорения (опционально, но рекомендуется для Hyprland):
-#### Для лучшей производительности и устранения разрывов (tearing) установите libva-nvidia-driver и vulkan-icd-loader (если еще не установлены):
+## 2. Установите пакеты для ускорения (опционально, но рекомендуется для Hyprland)
+#### Для лучшей производительности и устранения разрывов (tearing) установите libva-nvidia-driver и vulkan-icd-loader (если еще не установлены)
 ```sudo pacman -S libva-nvidia-driver vulkan-icd-loader```
 
-## 2. Настройка ядра и загрузчика (опции KMS - Kernel Mode Setting)
-### Отключите Nouveau (встроенный драйвер):
-Создайте файл ```/etc/modprobe.d/blacklist-nouveau.conf``` и добавьте в него:<br>
-```blacklist nouveau```
-```options nouveau modeset=0```
-
-### Включите KMS для NVIDIA:
+## 3. Включите KMS для NVIDIA:
 Откройте ```/etc/mkinitcpio.conf``` и добавьте ```nvidia``` и ```nvidia_modeset``` в секцию ```MODULES```:<br>
 ```MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)```
 Пересоберите initramfs:
 ```sudo mkinitcpio -P```
 
-## 3. Конфигурация Hyprland (в hyprland.conf):
-Откройте файл```~/.config/hypr/hyprland.conf.```
-Найдите раздел ````device``` и настройте его для Nvidia, добавив:
+## 4. Конфигурация Hyprland (в hyprland.conf):
+Откройте файл```~/.config/hypr/hyprland.conf.```<br>
+#Найдите раздел ````device``` и настройте его для Nvidia, добавив:
 
-device {
+#device {
     name = nvidia
     # Если есть проблемы, попробуйте эти опции:
     # no_cursor_warps = true
     # enable_vaapi = true # Для VA-API кодеков, если нужно
     # enable_vulkan = true # Для Vulkan
-}
+#}
 #Настройки для Hyprland и NVIDIA
 #Используйте 'nvidia' вместо 'auto'
 #По умолчанию Hyprland хорошо работает с nvidia, но можно настроить:
@@ -46,6 +40,6 @@ device {
 #Для 30-й серии карты лучше использовать VK_ICD=NVIDIA
 #Убедитесь, что переменные окружения установлены.
 
-## 4. Проверка:
+## 5. Проверка: (BASH)
 После перезагрузки убедитесь, что драйвер загрузился: ```nvidia-smi```<br>
 Проверьте, что Hyprland работает плавно, и нет разрывов изображения<br>

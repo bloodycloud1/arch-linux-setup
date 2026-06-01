@@ -1,0 +1,23 @@
+* {
+    border: none;
+}
+window {
+    font-size: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #282a36;
+    color: #f8f8f2;
+}
+#input {
+    background-color: #44475a;
+    color: #f8f8f2;
+    opacity: 0,5;
+}
+#entry:selected {
+    background-color: #6272a4;
+    background: linear-gradient(90deg,#7d87a6,#6272a4);
+}
+
+image {
+    padding-right: 6px;
+    margin-left:4px;
+}
