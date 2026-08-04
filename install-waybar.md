@@ -73,13 +73,13 @@ window#waybar {
 ### 4. Автозапуск в Hyprland
 
 #### Чтобы Waybar запускался вместе с сессией Hyprland, добавьте строку в автозагрузку.
-#### Откройте ```~/.config/hypr/hyprland.conf и добавьте:```
+#### Откройте ```~/.config/hypr/hyprland.lua и добавьте:```
 #### ```exec-once = waybar```
 
 ### 5. Применение изменений
 ```killall waybar && waybar```
 
-### 6.Можно запустить wayarb, чтобы он не висел терминале, вот так: 
+### 6.Можно запустить waybar, чтобы он не висел терминале, вот так: 
 ```hyprctl dispatch exec waybar```
 
 ### 7.Установка шрифтов для waybar

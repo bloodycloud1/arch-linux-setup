@@ -68,12 +68,15 @@ Partition type or allias (type L to list all): ```19``` (type L to list all) - �
 ```mkdir /mnt/efi```<br>
 ```mkdir /mnt/home```<br>
 
-#### Проверка создания директории **/mnt**
+##### Проверка создания директории **/mnt**
 ```cd /mnt```<br>
 ```ls```- ls (list - посмотреть содержимое текущей директории)
-возвращаемся  в root ```cd```<br>
-монтируем загрузчик ```mount /dev/sda3 /mnt/efi```<br>
-монтируем home ```mount /dev/sda2 /mnt/home```
+##### возвращаемся  в root 
+```cd```<br>
+##### монтируем загрузчик 
+```mount /dev/sda3 /mnt/efi```<br>
+##### монтируем home 
+```mount /dev/sda2 /mnt/home```
 
 ### 4. Работа с помощью  pacstrap
 pacstrap — это скрипт, используемый в дистрибутиве  Arch Linux  для установки базовых пакетов операционной системы в целевую систему, которая обычно монтируется в директорию  /mnt. Он позволяет быстро установить необходимые компоненты, такие как ядро Linux, и затем настроить систему для первого запуска.<br>
@@ -84,8 +87,9 @@ base, base-devel, linux, linux-headers: Минимальный набор для
 ### 5. Точка монтирования наших разделов
 genfstab в Arch Linux — это утилита, которая автоматически генерирует содержимое для файла /etc/fstab путем сканирования текущих точек монтирования и вывода их в формате, совместимом с этим файлом. Это упрощает процесс настройки файловой системы, особенно при установке, позволяя создать файл, который описывает, как монтировать дисковые разделы при загрузке системы.<br>
 ```genfstab -U /mnt >> /mnt/etc/fstab```<br>
-Заходим в **VIM** для  проверки ```vim /mnt/etc/fstab```<br>
-чтобы выйти из **VIM** нажимаем на комбинацию горячих ```Shift + :```  выходим командой ```q``` и попадаем опять в root
+##### Заходим в **VIM** для  проверки
+```vim /mnt/etc/fstab```<br>
+Чтобы выйти из **VIM** нажимаем на комбинацию горячих ```Shift + :```  выходим командой ```q``` и попадаем опять в root
 
 ### 6. Arch-chroot. Производим смену директории
 ```arch-chroot /mnt```<br>
@@ -109,13 +113,15 @@ genfstab в Arch Linux — это утилита, которая автомат�
 ```locale-gen```<br>
 ```echo "LANG=en_US.UTF-8" > /etc/locale.conf```
 
-### 7. Hostname (имя PC)
-```vim /etc/hostname```
-в vim прописываем свой ```{username}```<br>
+### 7. Hostname и Hosts
+
+##### Заходим в Hostname
+```vim /etc/hostname```<br>
+В vim прописываем свой ```{username}```<br>
 записываем ```shift + :``` далее ```w```<br>
 выходим ```shift + :``` далее ```q```<br>
 
-#### Hosts
+#### Заходим в Hosts
 ```127.0.0.1    localhost```<br>
 ```::1          localhost```<br>
 ```127.0.1.1    {username}.localdomain   {username}``` - username указываем свой личный<br>
@@ -137,23 +143,23 @@ genfstab в Arch Linux — это утилита, которая автомат�
 ```pacman -S sudo```<br>
 ```EDITOR=vim```<br>
 ```visudo```<br>
-расскоментируем строку ```%wheel ALL=(ALL)```
+```%wheel ALL=(ALL)``` - расскоментируем строку<br>
 
 ### 8. Устанавливаем  GRUB
 ```pacman -S grub``` <br>
 ```pacman -S efibootmgr dosfstools os-prober mtools```<br>
-
-#### Делаем Dual boot с Windows
-```vim /etc/defaul/grub``` <br>
-```GRUB_DISABLE_PROBER=false```  - прописываем в vim в GRUB boot loader configuration<br>
-записываем ```shift + :``` далее ```w```<br>
-выходим ```shift + :``` далее ```q```<br>
 ```mkdir /boot/EFI```<br>
 ```mount /dev/sda3 /boot/EFI```<br>
 ```grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck```<br>
 ```sudo grub-mkconfig -o /boot/grub/grub.cfg```<br>
 
-#### Если у кого-то выдаст ошибку при grub-install "efibootmgr failed to register the boot entry no such file or directory"
+##### Делаем Dual boot с Windows
+```vim /etc/defaul/grub``` <br>
+```GRUB_DISABLE_PROBER=false```  - прописываем в vim в GRUB boot loader configuration<br>
+записываем ```shift + :``` далее ```w```<br>
+выходим ```shift + :``` далее ```q```<br>
+
+#### Если выдаст ошибку при grub-install "efibootmgr failed to register the boot entry no such file or directory"
 ```"grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi --no-nvram --removable"```<br>
 
 ### 9. Инструмент который позволит настроить интернет 
@@ -166,10 +172,8 @@ genfstab в Arch Linux — это утилита, которая автомат�
 
 ### 10. Редактируем pacman.conf
 ```sudo vim /etc/pacman.conf ```<br>
-
-#### внутри расскоментируем
-```#multilib```<br>
-```#Include = /etc/pacman.d/mirrorlist```
+```#multilib``` - расскоментируем<br>
+```#Include = /etc/pacman.d/mirrorlist``` - расскоментируем<br>
 
 #### Перезапускаем систему
 ```exit```<br>

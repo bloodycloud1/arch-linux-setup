@@ -4,9 +4,11 @@
 ```sudo pacman -Syu```
 ### Установите драйверы и утилиты:
 #### nvidia-dkms: Основной пакет драйвера, который будет компилироваться для вашего ядра.
+```sudo pacman -S nvidia-utils``` 
 #### nvidia-utils: Утилиты и библиотеки.
+```sudo pacman -S nvidia-dkms```
 #### nvidia-settings: Для графических настроек.
-```sudo pacman -S nvidia-utils nvidia-dkms nvidia-settings ```
+```sudo pacman -S nvidia-settings ```
 
 ## 2. Установите пакеты для ускорения (опционально, но рекомендуется для Hyprland)
 #### Для лучшей производительности и устранения разрывов (tearing) установите libva-nvidia-driver и vulkan-icd-loader (если еще не установлены)

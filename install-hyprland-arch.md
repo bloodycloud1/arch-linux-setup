@@ -23,8 +23,9 @@
 #### Установка hyprpaper
 ```sudo pacman -S hyprpaper```
 
-#### Установка hyprpolkitagent
+#### Установка hyprpolkitagent и включение службы через systemd:
 ```sudo pacman -S hyprpolkitagent```
+```systemctl --user enable --now hyprpolkitagent```
 
 #### Установка mako
 ```sudo pacman -S mako```
@@ -32,8 +33,8 @@
 #### Установка hyprlauncher
 ```sudo pacman -S hyprlauncher```
 
-#### Установка clipboard wl-copy
-```sudo pacman -S wl-copy```
+#### Установка wl-copy clipboard 
+```sudo pacman -S wl-clipboard```
 
 #### Установка yay
 ```git clone https://aur.archlinux.org/yay.git```
