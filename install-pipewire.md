@@ -1,12 +1,11 @@
 # Pipewire
 
-### 1. Установка звукового сервера
+### 1. Установка звукового сервера Pipewire
 ```sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-jack```
 
-## Для управления звуком и Bluetoth, а также для виджетов в баре (Wlroots):
-### wireplumber: обязательный менеджер сессий для управления аудиоустройствами.
-### pamixer / pavucontrol: утилиты для управления громкостью (консоль и GUI).
-### pipewire-pulse: для совместимости с приложениями, ожидающими PulseAudio.
+#### wireplumber: обязательный менеджер сессий для управления аудиоустройствами.
+#### pamixer / pavucontrol: утилиты для управления громкостью (консоль и GUI).
+#### pipewire-pulse: для совместимости с приложениями, ожидающими PulseAudio.
 ```sudo pacman -S wireplumber pamixer pavucontrol```
 
 ### 2. Запуск сервисов PipeWire
@@ -29,31 +28,26 @@
 ```SUPER``` - это клавиша Windows/Super.<br>
 ```XF86Audio...``` - это клавиши мультимедиа с клавиатуры.<br>
 
-### Громкость вверх
+#### Громкость вверх
 ```bind = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+```<br>
-### Громкость вниз
+#### Громкость вниз
 ```bind = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-```<br>
-# Выключить звук
+#### Выключить звук
 ```bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle```<br>
 
-### 5. Запуск сервисов PipeWire
-Убедитесь, что сервисы PipeWire запущены и включены:<br>
-```systemctl --user --now enable pipewire pipewire-pulse wireplumber```<br>
-```systemctl --user start pipewire pipewire-pulse wireplumber```<br>
-
-### 6. Проверка и Запуск
+### 5. Проверка и Запуск
 Перезапустите Hyprland (выход и вход в систему, или Super + R для перезапуска).
 Запустите pavucontrol из терминала.
 Вкладка "Вывод" покажет ваши устройства (наушники, колонки). Выберите нужное устройство и установите его как "Устройство по умолчанию".
-Проверьте звук, запустив видео или музыку
+Проверьте звук, запустив видео или музыку.
 
-### 7. Проверка работы
+### 6. Проверка работы
 ```pactl info```
 
 ### 7. Bluetooth
 
-### Для Bluetooth-гарнитур также установите:
+#### Для Bluetooth-гарнитур также установите:
 ```sudo pacman -S pipewire-bluetooth bluez bluez-utils```
 
-### Не забудьте включить службу Bluetooth: 
+#### Не забудьте включить службу Bluetooth: 
 ```sudo systemctl enable --now bluetooth```
